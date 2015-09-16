@@ -1,0 +1,336 @@
+<!doctype html>
+<html>
+<head>
+    <title>Jquery supertoggle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style>
+        code.well {
+            margin: 1em 0;
+            display: block;
+        }
+        body {
+            padding: 1em 2em;
+            font-size: 16px;
+        }
+        h1.lead {
+            font-size: 50px;
+        }
+        h2.lead {
+            font-size: 40px;
+        }
+        .container {
+            margin: 2em auto;
+        }
+        pre {
+            white-space: pre-line;
+            border: none;
+            padding: 0.8em 1.2em;
+            color: #c7254e;
+            background-color: #f9f2f4;
+        }
+        .intro {
+            font-size: 15px;
+            opacity: 0.8;
+            border-left: 4px solid #ccc;
+            padding: 1em;
+            margin-bottom: 2em;
+            background-color: #f1f1f1;
+        }
+        .intro .text-uppercase {
+            margin-right: 0.4em;
+            padding-right: 0.4em;
+            border-right: 1px solid #999;
+        }
+        .center-btn {
+            margin: 2em auto;
+        }
+        .copyright {
+            padding-top: 3em;
+        }
+        @media screen and (max-width: 480px) {
+            body {
+                padding: 0;
+            }
+            h1.lead {
+                font-size: 40px;
+            }
+            h2.lead {
+                font-size: 30px;
+            }
+            .btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-12">
+                <p>jQuery <strong>supertoggle</strong></p>
+                <h1 class="lead">Tired of writing boilerplate <strong>toggle()</strong> code in jquery? <br> <small>Do it <strong>powerfully</strong>, <strong>declaratively</strong>, and <strong>easily</strong> instead.</small></h1>
+                <hr>
+                <br>
+                <p class="lead">Add <code>data-toggle="swappable"</code> to your elements, and describe the scenario you'd like to see in JSON, right in the same place. For example <code>&lt;a href="#" data-swap='{"#left.cols": [{".from": ".to"}]}'&gt;</code>. It just works!</p>
+                <a href="#usage" class="btn-xs btn btn-info">See usage</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h3 class="intro">
+            <span class="text-uppercase">Example 0</span>
+            Toggle the left and right sidebars, and change the toggle buttons size, color and arrow type
+        </h3>
+        <div class="row">
+            <div class="hidden-sm hidden-xs col-md-3 col-lg-3" id="left-panel">
+                <h4>Left heading!</h4>
+                <ul>
+                    <li>Lorem ipsum dolor sit amet.</li>
+                    <li>Neque, nobis quia a velit.</li>
+                    <li>Assumenda tenetur amet, eligendi officiis.</li>
+                    <li>Cum libero esse provident. Aperiam!</li>
+                </ul>
+                <ul>
+                    <li>Lorem ipsum dolor sit amet, consectetur.</li>
+                    <li>Odio reprehenderit nobis, consectetur quisquam. Itaque!</li>
+                    <li>Earum laudantium neque, dolores odit. Ab!</li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" id="main-col">
+                <h2>Swap anything!</h2>
+                <p>Mollitia eligendi sapiente, quaerat dicta. Laudantium laboriosam vitae commodi nostrum, expedita aspernatur ea consectetur asperiores, sed vel reprehenderit excepturi eum, accusamus et a illo quibusdam? Similique illum nostrum modi natus.</p>
+                <p>Velit dignissimos consequatur alias earum corporis vel. Alias nihil vel maiores eum possimus labore fuga ullam ducimus dignissimos doloremque, et voluptatibus minus culpa nemo cupiditate, iste sunt! Maxime, mollitia, excepturi.</p>
+                <h3>For real!</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos doloribus perspiciatis ea soluta, ratione voluptatibus voluptate minus! Non, a libero ea rerum, similique quae animi reprehenderit tenetur sapiente dolorum sequi.</p>
+                <pre>
+                    {
+                    "#swappable-1": [{".btn-success": ".btn.btn-sm.btn-default"}],
+                    "#swappable-1 .leftarr": [{"": ".hidden"}],
+                    "#swappable-1 .rightarr": [{".hidden": ""}],
+
+                    "#left-panel": [{"": ".hidden-lg"}],
+                    "#main-col": [{".col-lg-9.col-md-9": ".col-lg-12.col-md-12"}]
+                }
+            </pre>
+            <p>
+                <a href="#" class="btn btn-lg btn-success" id="swappable-1" data-swap='{
+                "#swappable-1": [{".btn-success": ".btn.btn-sm.btn-default"}],
+                "#left-panel": [{"": ".hidden-lg"}],
+                "#swappable-1 .leftarr": [{"": ".hidden"}],
+                "#swappable-1 .rightarr": [{".hidden": ""}],
+                "#main-col": [{".col-lg-9.col-md-9": ".col-lg-12.col-md-12"}]}' data-toggle="swappable">
+                <span class="leftarr">&larr;</span><span class="rightarr hidden">&rarr;</span> Click me! I'm a toggleable and swappable button</a>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h3 class="intro">
+        <span class="text-uppercase">Example 1</span>
+        Toggle colors for 3 different columns, and make 2 of them have <code>.lead</code> headings? <small>That's a breeze.</small>
+    </h3>
+    <div class="row">
+        <div class="col-md-4" id="3col-1">
+            <h3>Lorem ipsum dolor sit amet, consectetur.</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit dolorum esse mollitia distinctio beatae animi accusamus amet? Provident ab similique ratione consequuntur a accusantium dicta, vel, in sit, iste eum.</p>
+            <p>Officiis culpa placeat iste eum, dolores voluptatum eius vel id reprehenderit voluptatem nobis magni deleniti quisquam quos excepturi inventore incidunt a quia laborum ullam non pariatur vero distinctio. Hic, explicabo.</p>
+        </div>
+        <div class="col-md-4" id="3col-2">
+            <h3>Accusantium iusto voluptatem fugit possimus libero!</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione minus veniam nemo facilis beatae maiores in, odit illo numquam est pariatur dignissimos eaque quidem, laudantium quis facere earum. Maxime, ab.</p>
+            <p>Quibusdam quia, molestiae nobis consequuntur numquam. Possimus neque consectetur eius facere, illum libero minima obcaecati cum commodi eos natus, quis recusandae aspernatur blanditiis itaque explicabo dolore perspiciatis, provident quas fuga!</p>
+        </div>
+        <div class="col-md-4" id="3col-3">
+            <h3>Voluptatum maiores corrupti, neque fuga a.</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident ipsum praesentium repudiandae expedita, vero. Dolore odit labore harum temporibus sed possimus nostrum ex suscipit, iste doloribus, alias. Suscipit, rem aliquam?</p>
+            <p>Aut nulla nam aliquid deleniti reiciendis sed autem, quidem id harum, asperiores expedita natus totam pariatur perferendis eius ea fugit, dolorem deserunt iure perspiciatis illum! Saepe cupiditate deleniti maiores id.</p>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <p>
+                <a href="#" class="btn btn-lg btn-info" data-swap='{
+                "#3col-1": [{"": ".text-danger"}],
+                "#3col-1 h3": [{"": ".lead"}],
+
+                "#3col-2": [{"": ".text-info"}],
+                "#3col-3": [{"": ".text-success"}],
+                "#3col-3 h3": [{"": ".lead"}]
+            }' data-toggle="swappable">Blasphemy! This is black magic!</a>
+        </p>
+    </div>
+    <div class="col-md-6">
+        <pre>
+            {
+            "#3col-1": [{"": ".text-danger"}],
+            "#3col-1 h3": [{"": ".lead"}],
+
+            "#3col-2": [{"": ".text-info"}],
+            "#3col-3": [{"": ".text-success"}],
+            "#3col-3 h3": [{"": ".lead"}]
+        }
+    </pre>
+</div>
+</div>
+</div>
+<div class="container">
+    <h3 class="intro"><span class="text-uppercase">Example 2</span>How about some nth-of-type pseudoselectors? <small>and table styles? colors? hover states?</small></h3>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Important data</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01</td>
+                        <td>Florg</td>
+                        <td>florg@florgendorf.com</td>
+                        <td>312.0333 <sup>e-0.011</sup></td>
+                    </tr>
+                    <tr>
+                        <td>21</td>
+                        <td>Jim</td>
+                        <td>jdog@aol.com</td>
+                        <td>32</td>
+                    </tr>
+                    <tr>
+                        <td>391</td>
+                        <td>Augustine</td>
+                        <td>aug391@gmail.com</td>
+                        <td>68</td>
+                    </tr>
+                    <tr>
+                        <td>44</td>
+                        <td>Spot</td>
+                        <td>dogs@donthaveemails.com</td>
+                        <td>12</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+                <p>
+                    <a href="#" class="center-btn btn btn-lg btn-warning" data-swap='{
+                    "table": [{".table": ".table-condensed.table.table-striped.table-bordered.table-hover"}],
+                    "table tbody td:nth-of-type(2)": [{"": ".text-uppercase"}],
+                    "table tbody tr:nth-of-type(1)": [{"": ".success"}],
+                    "table tbody tr:nth-of-type(2)": [{"": ".info"}],
+                    "table tbody tr:nth-of-type(3)": [{"": ".danger"}]
+                }' data-toggle="swappable">Okay, let's see it!</a>
+            </p>
+            <pre>
+                {
+                    "table": [{".table": ".table-condensed.table.table-striped.table-bordered.table-hover"}],
+                    "table tbody td:nth-of-type(2)": [{"": ".lead"}],
+                    "table tbody tr:nth-of-type(1)": [{"": ".success"}],
+                    "table tbody tr:nth-of-type(2)": [{"": ".info"}],
+                    "table tbody tr:nth-of-type(3)": [{"": ".danger"}]
+                }
+            </pre>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h3 class="intro"><span class="text-uppercase">Example 3</span>Trigger all kinds of layouts. <small>Suddenly, making complex, interesting layouts is <strong>fun</strong> again.</small></h3>
+    <div class="row">
+        <div class="col-md-4">
+                <p>
+                    <a href="#" class="center-btn btn btn-lg btn-primary" data-swap='{
+                    "#a-layout > div": [{".col-md-4": ".col-md-12.well"}],
+                    "#a-layout dl": [{"": ".dl-horizontal"}]
+                }' data-toggle="swappable">Stack it for easy viewing!</a>
+            </p>
+            <pre>
+                {
+                    "#a-layout > div": [{".col-md-4": ".col-md-12.well.text-right"}]
+                }
+            </pre>
+        </div>
+        <div class="col-md-8">
+            <div class="row" id="a-layout">
+                <div class="col-md-4">
+                    <dl>
+                        <dt>Lorem ipsum dolor sit.</dt>
+                        <dd>Aperiam, obcaecati minima animi necessitatibus praesentium.</dd>
+                        <dt>Facere est expedita repellendus!</dt>
+                        <dd>Nisi et incidunt totam mollitia consectetur.</dd>
+                        <dt>Sit, tempore hic minus!</dt>
+                        <dd>Accusantium culpa libero dignissimos eaque repellendus!</dd>
+                        <dt>Lorem ipsum dolor.</dt>
+                        <dd>Lorem ipsum dolor sit amet, consectetur.</dd>
+                    </dl>
+                    <hr>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi li hic maiores.</p>
+                </div>
+                <div class="col-md-4">
+                    <dl>
+                        <dt>Lorem ipsum dolor sit.</dt>
+                        <dd>Aperiam, obcaecati minima animi necessitatibus praesentium.</dd>
+                        <dt>Facere est expedita repellendus!</dt>
+                        <dd>Nisi et incidunt totam mollitia consectetur.</dd>
+                        <dt>Sit, tempore hic minus!</dt>
+                        <dd>Accusantium culpa libero dignissimos eaque repellendus!</dd>
+                        <dt>Lorem ipsum dolor.</dt>
+                        <dd>Lorem ipsum dolor sit amet, consectetur.</dd>
+                    </dl>
+                    <hr>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi li hic maiores.</p>
+                </div>
+                <div class="col-md-4">
+                    <dl>
+                        <dt>Lorem ipsum dolor sit.</dt>
+                        <dd>Aperiam, obcaecati minima animi necessitatibus praesentium.</dd>
+                        <dt>Facere est expedita repellendus!</dt>
+                        <dd>Nisi et incidunt totam mollitia consectetur.</dd>
+                        <dt>Sit, tempore hic minus!</dt>
+                        <dd>Accusantium culpa libero dignissimos eaque repellendus!</dd>
+                        <dt>Lorem ipsum dolor.</dt>
+                        <dd>Lorem ipsum dolor sit amet, consectetur.</dd>
+                    </dl>
+                    <hr>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi li hic maiores.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a name="usage"></a>
+            <h2 class="lead text-center">Usage</h2>
+            <h3>Initialize</h3>
+            <ol>
+                <li>Add the script to your document, after jQuery.</li>
+                <li>Initialize whatever selector you want. E.g. <code>$('[data-toggle="swappable"]').on('click', supertoggle);</code></li>
+            </ol>
+            <h3>Declare</h3>
+            <p>Elements must have <code>data-toggle="swappable"</code> set, and declarations are done via <code>data-swap='{"#selector": [{".from1": ".to1"}, {".from2": ".to2"}]}'</code> Where each <strong>key</strong> is a jquery selector, and each <strong>value</strong> is an <strong>array of objects with one key and one value</strong>, describing the swap <strong>from</strong>, and swap <strong>to</strong> values. There's no limit to how many you can use.</p>
+            <h3 class="lead">More advanced usage</h3>
+            <p>See the above examples for multiple selectors, pseudo-selectors and more.</p>
+        </div>
+    </div>
+</div>
+<p class="text-center copyright">
+    &copy; Copyright 2015 Chris Tabor. <br class="visible-xs"> See repo and LICENSE for details.
+</p>
+<!-- VENDOR -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+<script src="src/jquery.supertoggle.js"></script>
+<script>
+    $('[data-toggle="swappable"]')
+    .on('click', function(e){e.preventDefault();})
+    .on('click', supertoggle);
+</script>
+</body>
+</html>
