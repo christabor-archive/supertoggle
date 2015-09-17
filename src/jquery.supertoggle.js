@@ -1,3 +1,11 @@
+/*!
+ * jquery supertoggle - A jQuery plugin to allow complex toggling of any styles, classes, etc... easily
+ * (c) 2015 Chris Tabor <dxdstudio@gmail.com>
+ * See license for information
+ * <3
+ * https://christabor.github.io/supertoggle/
+ * https://github.com/christabor/supertoggle/
+ */
 function supertoggle(e) {
     var data = $(this).data();
     if(!data['swap']) return;
