@@ -8,8 +8,8 @@
  */
 function supertoggle(e) {
     var data = $(this).data();
-    if(!data['swap']) return;
-    $.each(data['swap'], function(id, swap_data){
+    if(!data.swap) return;
+    $.each(data.swap, function(id, swap_data){
         if(swap_data.length === 0) return false;
         $.each(swap_data, function(key, to_swap){
             $.each(to_swap, function(el_from, el_to){
@@ -25,10 +25,10 @@ function supertoggle(e) {
                 var el = {};
                 el[el_to] = el_from;
                 // Overwrite the property.
-                data['swap'][id][key] = el
+                data.swap[id][key] = el
             });
         });
     });
     // Reset the data on the DOM element as well, so toggling works again.
-    $(this).data('swap', data['swap']);
+    $(this).data('swap', data.swap);
 }
