@@ -27,6 +27,7 @@
             border: none;
             padding: 0.8em 1.2em;
             color: #c7254e;
+            text-align: left;
             background-color: #f9f2f4;
         }
         .intro {
@@ -305,6 +306,27 @@
     </div>
 </div>
 <div class="container">
+    <h3 class="intro"><span class="text-uppercase">Example 4</span>Other events. <small>It's not just limited to clicks!</small></h3>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <p id="hovertext">
+                <a href="#" class="center-btn btn btn-lg btn-primary hovered"
+                    data-swap='{"#hovertext": [{"": ".text-center"}], "#hovertext a": [{".btn-primary": ".btn-info"}], ".hiddentext": [{".hidden": ""}]}'
+                    data-toggle="swappable">Hover over me!</a>
+                <br>
+                <span class="hidden hiddentext">You can also any other events, including hover!</span>
+            </p>
+            <pre>
+                {
+                    "#hovertext": [{"": ".text-center"}],
+                    "#hovertext a": [{".btn-primary": ".btn-info"}],
+                    ".hiddentext": [{".hidden": ""}]
+                }
+            </pre>
+        </div>
+    </div>
+</div>
+<div class="container">
     <div class="row">
         <div class="col-md-12">
             <a name="usage"></a>
@@ -331,6 +353,8 @@
     $('[data-toggle="swappable"]')
     .on('click', function(e){e.preventDefault();})
     .on('click', supertoggle);
+    $('.hovered[data-toggle="swappable"]')
+    .on('mouseover', supertoggle);
 </script>
 </body>
 </html>
